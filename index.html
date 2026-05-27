@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Faizul Haque Dhrubo — Efficient, Deployable AI</title>
+<meta name="description" content="Ahmed Faizul Haque Dhrubo — Graduate Research Assistant at NSU Intelligent Robotics Lab. Research on efficient deep learning architectures, multimodal sensor fusion, and embedded AI for climate-resilient systems.">
+<meta name="author" content="Ahmed Faizul Haque Dhrubo">
+<meta name="keywords" content="Ahmed Dhrubo, North South University, NIROlab, deep learning, computer vision, edge AI, embedded systems, robotics, HybiNet, climate resilience, PhD applicant">
+<meta property="og:title" content="Ahmed Faizul Haque Dhrubo — Efficient, Deployable AI">
+<meta property="og:description" content="Graduate Research Assistant at NSU Intelligent Robotics Lab working on efficient deep learning, multimodal sensor fusion, and edge AI.">
+<meta property="og:type" content="profile">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #F7F2E9;
+    --paper-warm: #F1EADD;
+    --ink: #1C1814;
+    --ink-soft: #2E2822;
+    --muted: #6B5F50;
+    --muted-2: #8A7F70;
+    --accent: #A8472B;
+    --accent-bright: #C2542F;
+    --accent-soft: #E8D5C5;
+    --line: #DFD5C2;
+    --line-soft: #ECE3D2;
+    --tag-bg: rgba(28, 24, 20, 0.055);
+    --tag-bg-hover: rgba(168, 71, 43, 0.10);
+
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(at 12% 8%, rgba(168, 71, 43, 0.04) 0px, transparent 50%),
+      radial-gradient(at 88% 92%, rgba(61, 92, 92, 0.035) 0px, transparent 55%);
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: color 160ms, border-color 160ms; }
+  a:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ----- Top Bar ----- */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(247, 242, 233, 0.85);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .topbar-inner {
+    max-width: 980px; margin: 0 auto;
+    padding: 14px 28px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    border: none;
+  }
+  .brand .dot { color: var(--accent); }
+  .nav {
+    display: flex; gap: 22px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .nav a { border: none; color: var(--muted); }
+  .nav a:hover { color: var(--accent); }
+
+  /* ----- Layout ----- */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  section { padding: 88px 0 32px; scroll-margin-top: 80px; }
+  section:first-of-type { padding-top: 72px; }
+
+  /* ----- Hero ----- */
+  .hero {
+    padding-top: 96px;
+    padding-bottom: 8px;
+  }
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+  .hero-eyebrow .pip {
+    display: inline-block; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    margin-right: 10px; transform: translateY(-2px);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  h1.name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 6.2vw, 64px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0 0 16px;
+    color: var(--ink);
+  }
+  h1.name .ital {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-role {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 540px;
+    margin-bottom: 36px;
+    line-height: 1.55;
+  }
+  .hero-role strong { color: var(--ink); font-weight: 500; }
+
+  /* ----- Bio ----- */
+  .bio {
+    font-size: 17.5px;
+    line-height: 1.72;
+    color: var(--ink-soft);
+    max-width: 680px;
+  }
+  .bio strong { color: var(--ink); font-weight: 500; }
+  .bio p { margin: 0 0 18px; }
+
+  /* ----- Quick links ----- */
+  .quicklinks {
+    display: flex; flex-wrap: wrap; gap: 8px 6px;
+    margin: 36px 0 8px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .quicklinks a {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    background: var(--tag-bg);
+    border: none;
+    border-radius: 999px;
+    font-size: 13.5px;
+    color: var(--ink);
+    font-weight: 500;
+    transition: background 160ms, color 160ms, transform 160ms;
+  }
+  .quicklinks a:hover {
+    background: var(--accent);
+    color: var(--paper);
+    transform: translateY(-1px);
+  }
+  .quicklinks .symbol { font-size: 14px; }
+  .email-line {
+    margin-top: 22px;
+    font-family: var(--font-mono);
+    font-size: 13.5px;
+    color: var(--muted);
+  }
+  .email-line strong { color: var(--ink); font-weight: 500; }
+  .pronouns {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  /* ----- Section headers ----- */
+  h2.section-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 34px;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+    line-height: 1.1;
+  }
+  h2.section-title .num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--accent);
+    vertical-align: super;
+    margin-right: 8px;
+    letter-spacing: 0.08em;
+  }
+  .section-rule {
+    height: 1px; background: var(--line);
+    margin: 18px 0 36px;
+  }
+  .section-intro {
+    color: var(--muted);
+    margin: -4px 0 30px;
+    max-width: 600px;
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+
+  /* ----- News ----- */
+  .news-list {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px 28px;
+    align-items: baseline;
+  }
+  .news-date {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    padding-top: 2px;
+  }
+  .news-item {
+    color: var(--ink-soft);
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line-soft);
+    line-height: 1.55;
+  }
+  .news-list > div:nth-last-child(-n+2) .news-item,
+  .news-list > div:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 4px; }
+  .view-all {
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    border: none;
+  }
+
+  /* ----- Publication cards ----- */
+  .pub {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 28px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .pub:first-of-type { border-top: 1px solid var(--line); }
+  .pub-meta {
+    display: flex; flex-direction: column;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-top: 4px;
+  }
+  .pub-venue {
+    color: var(--accent);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .pub-year { color: var(--muted-2); }
+  .pub-type { color: var(--muted); font-size: 10.5px; }
+
+  .pub-body { min-width: 0; }
+  .pub-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 1.25;
+    letter-spacing: -0.012em;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .pub-title a { border: none; color: inherit; }
+  .pub-title a:hover { color: var(--accent); }
+  .pub-authors {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .pub-authors .me { color: var(--ink); font-weight: 600; }
+  .pub-summary {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .pub-award {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+  .pub-links {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 12px;
+  }
+  .pub-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 11px;
+    background: var(--tag-bg);
+    border: none;
+    border-radius: 4px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--ink);
+    transition: background 160ms, color 160ms;
+  }
+  .pub-link:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  /* ----- Research cards ----- */
+  .research-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .research-card {
+    padding: 24px 24px 26px;
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    position: relative;
+    transition: border-color 200ms, transform 200ms;
+  }
+  .research-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .research-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .research-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+  .research-desc {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ----- Compact pub list (additional) ----- */
+  .compact-list { margin-top: 12px; }
+  .compact-item {
+    padding: 16px 0;
+    border-top: 1px solid var(--line-soft);
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .compact-item:last-child { border-bottom: 1px solid var(--line-soft); }
+  .compact-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    line-height: 1.4;
+    padding-top: 3px;
+  }
+  .compact-meta .yr { color: var(--muted-2); display: block; }
+  .compact-body { min-width: 0; }
+  .compact-title {
+    font-size: 15.5px;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 4px;
+    line-height: 1.4;
+  }
+  .compact-title a { border: none; }
+  .compact-title a:hover { color: var(--accent); }
+  .compact-authors {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .compact-authors .me { color: var(--ink); font-weight: 600; }
+  .compact-status {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-left: 6px;
+  }
+
+  /* ----- Teaching block ----- */
+  .teaching-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0 28px;
+  }
+  .stat {
+    padding: 18px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--paper-warm);
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 30px;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .teaching-text {
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-size: 15.5px;
+  }
+  .teaching-text p { margin: 0 0 14px; }
+
+  /* ----- Awards / Service ----- */
+  .award-list, .service-list {
+    list-style: none;
+    padding: 0; margin: 0;
+  }
+  .award-list li, .service-list li {
+    padding: 14px 0;
+    border-top: 1px solid var(--line-soft);
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .award-list li:last-child, .service-list li:last-child {
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .award-list li strong, .service-list li strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .award-year, .service-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    margin-right: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    min-width: 54px;
+  }
+
+  /* ----- Footer ----- */
+  footer {
+    margin-top: 80px;
+    padding: 56px 28px 64px;
+    border-top: 1px solid var(--line);
+    background: var(--paper-warm);
+  }
+  .footer-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .footer-block h4 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin: 0 0 14px;
+    font-weight: 500;
+  }
+  .footer-block p {
+    margin: 0 0 6px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .footer-block a { font-size: 14.5px; }
+  .footer-bottom {
+    max-width: 760px;
+    margin: 36px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--muted-2);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .back-to-top {
+    border: none;
+    background: var(--tag-bg);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+  .back-to-top:hover { background: var(--accent); color: var(--paper); }
+
+  /* ----- Reveal animation ----- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise 700ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+  .reveal-1 { animation-delay: 100ms; }
+  .reveal-2 { animation-delay: 220ms; }
+  .reveal-3 { animation-delay: 340ms; }
+  .reveal-4 { animation-delay: 460ms; }
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ----- Responsive ----- */
+  @media (max-width: 720px) {
+    .topbar-inner { padding: 12px 20px; }
+    .nav { gap: 16px; font-size: 11px; }
+    main { padding: 0 22px; }
+    section { padding: 64px 0 16px; }
+    .hero { padding-top: 56px; }
+    .news-list { grid-template-columns: 84px 1fr; gap: 10px 16px; }
+    .pub { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
+    .pub-meta { flex-direction: row; gap: 14px; }
+    .compact-item { grid-template-columns: 1fr; gap: 6px; }
+    .compact-meta { font-size: 10.5px; }
+    .teaching-stats { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+    h2.section-title { font-size: 28px; }
+  }
+  @media (max-width: 440px) {
+    .nav a:nth-child(n+4) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">Ahmed Faizul Haque Dhrubo<span class="dot">.</span></a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="about">
+    <div class="hero-eyebrow reveal reveal-1"><span class="pip"></span>Open to PhD positions · Fall 2026</div>
+    <h1 class="name reveal reveal-2">Ahmed Faizul<br>Haque <span class="ital">Dhrubo</span></h1>
+    <p class="hero-role reveal reveal-3">
+      Graduate Research Assistant at the <strong>NSU Intelligent Robotics Lab (NIROlab)</strong>, Department of Electrical &amp; Computer Engineering, North South University, Dhaka.
+    </p>
+
+    <div class="bio reveal reveal-4">
+      <p>
+        <strong>I build efficient, explainable, and deployable AI systems</strong> that work under the real-world constraints of edge devices and climate-vulnerable environments. My research spans deep learning architectures for computer vision and NLP, multimodal sensor fusion for embedded systems, and IoT-enabled climate resilience.
+      </p>
+      <p>
+        I am particularly interested in <strong>compressing heavyweight vision models without sacrificing accuracy</strong>. This led to <em>HybiNet</em>, a block-level fusion ensemble that injects intermediate features from EfficientNet, DenseNet, and Xception into customized SqueezeNet Fire Modules — reaching <strong>95.44% validation accuracy with 2.83M parameters</strong>, a 62.6% parameter reduction versus DenseNet121. I extended this to object detection in HybiNet&nbsp;v2, presented at MIT URTC 2025.
+      </p>
+      <p>
+        Beyond model efficiency, I have built first-author work on <strong>IoT systems for extreme-weather resilience</strong> (MMAR 2024), a <strong>MOF-based sustainable cooling architecture</strong> for Bangladesh's urban-heat crisis (ICESA 2024), and a <strong>Kolmogorov–Arnold Network approach to legal document classification</strong> (ACL 2026, under review). My team received a <strong>Best Session Paper Award at IEEE IPAS 2025</strong> for satellite-image segmentation analyzing environmental degradation in Bangladesh.
+      </p>
+      <p>
+        I coordinate Senior Design and Embedded Systems at NSU, where I have mentored <strong>over 200 student projects</strong> in AI, IoT, and robotics since 2023. I am currently targeting CVPR 2027 with a unified foundation model for multi-class tracking, detection, and segmentation.
+      </p>
+    </div>
+
+    <div class="quicklinks">
+      <a href="#" target="_blank" rel="noopener"><span class="symbol">📑</span> Curriculum Vitae</a>
+      <a href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener"><span class="symbol">🎓</span> Google Scholar</a>
+      <a href="#" target="_blank" rel="noopener"><span class="symbol">🔬</span> ResearchGate</a>
+      <a href="#" target="_blank" rel="noopener"><span class="symbol">💼</span> LinkedIn</a>
+      <a href="https://github.com/" target="_blank" rel="noopener"><span class="symbol">⌥</span> GitHub</a>
+    </div>
+
+    <div class="email-line"><strong>📧</strong>&nbsp;&nbsp;ahmed.dhrubo&nbsp;[at]&nbsp;northsouth&nbsp;⋅&nbsp;edu</div>
+    <div class="pronouns">Based in Dhaka, Bangladesh · He/Him</div>
+  </section>
+
+
+  <section id="news">
+    <h2 class="section-title"><span class="num">01</span>News</h2>
+    <div class="section-rule"></div>
+
+    <div class="news-list">
+      <div class="news-date">Apr 2026</div>
+      <div class="news-item">First-author paper on legal document classification with a Kolmogorov–Arnold Network block submitted to <strong>ACL 2026</strong> (under review).</div>
+
+      <div class="news-date">Apr 2026</div>
+      <div class="news-item"><strong>PlantaNet</strong> — efficient multi-crop disease classification via transformer benchmarking and custom lightweight CNNs — published in <strong>PLOS ONE</strong>.</div>
+
+      <div class="news-date">Jan 2026</div>
+      <div class="news-item"><strong>CerevianNet</strong> — parameter-efficient multi-class brain tumor classification — published in <strong>Frontiers in Medicine</strong>.</div>
+
+      <div class="news-date">Oct 2025</div>
+      <div class="news-item"><strong>HybiNet</strong> accepted as a first-author paper at the <strong>IEEE MIT Undergraduate Research Technology Conference (URTC) 2025</strong>.</div>
+
+      <div class="news-date">Jul 2025</div>
+      <div class="news-item">Received <strong>Best Session Paper Award</strong> at IEEE IPAS 2025 (Lyon, France) for multi-model satellite-image segmentation of Bangladesh.</div>
+
+      <div class="news-date">Mar 2025</div>
+      <div class="news-item">PVTv2-based lung-cancer detection paper presented at <strong>ICAIIC 2025</strong> in Fukuoka, Japan.</div>
+
+      <div class="news-date">Feb 2025</div>
+      <div class="news-item">Finalist, AI Poster at the <strong>BEAR Summit</strong> and National Semiconductor Symposium Bangladesh.</div>
+
+      <div class="news-date">Dec 2024</div>
+      <div class="news-item">Graduated B.Sc. in Computer Science &amp; Engineering (Major: Robotics &amp; AI; Minor: Theory of Computation) from North South University.</div>
+    </div>
+  </section>
+
+
+  <section id="research">
+    <h2 class="section-title"><span class="num">02</span>Current Research</h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">Three active threads in progress alongside ongoing collaborations.</p>
+
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="research-tag">Targeting · CVPR 2027</div>
+        <h3 class="research-title">Unified Foundation Model for Tracking, Detection, and Segmentation</h3>
+        <p class="research-desc">A single architecture trained jointly across more than 15 large-scale datasets — including Objects365, COCO, and Cityscapes — for multi-class perception under shared representations.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-tag">In progress · Civil Justice AI</div>
+        <h3 class="research-title">Kolmogorov–Arnold Networks for LLM Frameworks</h3>
+        <p class="research-desc">Re-engineering KAN blocks for transformer language models to improve efficiency and reduce algorithmic bias in Bangladesh's civil judiciary — extending the legal-document classification line from my undergraduate thesis (<em>Themis</em>) toward ACL-grade evaluation.</p>
+      </div>
+
+      <div class="research-card">
+        <div class="research-tag">Edge AI · Embodied</div>
+        <h3 class="research-title">Edge-Native Autonomous Manipulation on Raspberry Pi 5</h3>
+        <p class="research-desc">A framework combining imitation learning, reinforcement learning, and vision-language grounding to enable high-level robotic intelligence without cloud inference — built around the Raspberry Pi 5 as a deployment target for resource-constrained settings.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="publications">
+    <h2 class="section-title"><span class="num">03</span>Key Publications</h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">Peer-reviewed publications at international conferences and journals. First-author and lead-contributor works are surfaced here; the full list is below.</p>
+
+
+    <article class="pub">
+      <div class="pub-meta">
+        <span class="pub-venue">IEEE MIT<br>URTC</span>
+        <span class="pub-year">2025</span>
+        <span class="pub-type">Full paper · 1st author</span>
+      </div>
+      <div class="pub-body">
+        <h3 class="pub-title"><a href="#">HybiNet: Multi-Model Feature Fusion with Deep Explainability for Chest X-ray Diagnosis</a></h3>
+        <p class="pub-authors"><span class="me">A. F. H. Dhrubo</span>, M. A. Rusho, M. K. Jahan, M. A. Qayum</p>
+        <p class="pub-summary">A block-level fusion ensemble that injects intermediate features from EfficientNetB0, DenseNet121, and Xception into customized SqueezeNet Fire Modules. The result is heavyweight accuracy with far fewer parameters — 95.44% validation accuracy at 2.83M parameters, a 62.6% reduction versus DenseNet121, with strong interpretability. HybiNet v2 extends the design to object detection.</p>
+        <div class="pub-links">
+          <a class="pub-link" href="#">📃 Paper</a>
+          <a class="pub-link" href="#">🛠️ Code</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="pub">
+      <div class="pub-meta">
+        <span class="pub-venue">IEEE<br>IPAS</span>
+        <span class="pub-year">2025</span>
+        <span class="pub-type">Full paper · contributor</span>
+      </div>
+      <div class="pub-body">
+        <span class="pub-award">🏆 Best Session Paper Award</span>
+        <h3 class="pub-title"><a href="https://doi.org/10.1109/IPAS63548.2025.10924556">Multi-Model AI-Driven Satellite Image Segmentation for Comprehensive Urbanization and Environmental Degradation Analysis in Bangladesh</a></h3>
+        <p class="pub-authors">M. Rezwan-ul-alam, <span class="me">A. F. H. Dhrubo</span>, et&nbsp;al.</p>
+        <p class="pub-summary">A large-scale annotated dataset and temporal-analysis framework covering buildings, trees, water bodies, tin shades, and farmlands across a decade of satellite imagery — quantifying land-use transformation and environmental degradation in Bangladesh. I built the annotation workflow and the temporal analysis pipeline.</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://doi.org/10.1109/IPAS63548.2025.10924556">📃 Paper</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="pub">
+      <div class="pub-meta">
+        <span class="pub-venue">ICAIIC</span>
+        <span class="pub-year">2025</span>
+        <span class="pub-type">Full paper · 2nd author</span>
+      </div>
+      <div class="pub-body">
+        <h3 class="pub-title"><a href="https://doi.org/10.1109/ICAIIC64266.2025.10920787">Early Detection of Lung Cancer Using Pyramid Vision Transformer (PVTv2): A Comparative Analysis of Deep Learning Models</a></h3>
+        <p class="pub-authors">M. K. Jahan, <span class="me">A. F. H. Dhrubo</span>, M. A. Rusho, A. R. Chowdhury, F. Sharmin, M. A. Qayum</p>
+        <p class="pub-summary">Systematic benchmarking of transformer-based vision architectures with ablation studies, identifying PVTv2 as the strongest performer for lung-cancer detection. Building on the satellite work, this paper grew out of broader work on which Vision Transformer variants generalize best in resource-constrained medical imaging.</p>
+        <div class="pub-links">
+          <a class="pub-link" href="https://doi.org/10.1109/ICAIIC64266.2025.10920787">📃 Paper</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="pub">
+      <div class="pub-meta">
+        <span class="pub-venue">ICESA</span>
+        <span class="pub-year">2024</span>
+        <span class="pub-type">Full paper · 1st author</span>
+      </div>
+      <div class="pub-body">
+        <h3 class="pub-title"><a href="#">Harnessing Technology for Climate Resilience: A New Paradigm in Urban Cooling through Eco-friendly Cooler</a></h3>
+        <p class="pub-authors"><span class="me">A. F. H. Dhrubo</span>, M. A. Qayum, et&nbsp;al.</p>
+        <p class="pub-summary">A sustainable alternative to conventional air conditioning for Bangladesh's urban-heat crisis. I contributed an AI-driven control algorithm based on ASHRAE 55 (PMV/PPD) comfort modeling and helped design a hybrid architecture combining MOF-based desiccant dehumidification with evaporative cooling. The prototype produces cooling comparable to a 1-ton AC while consuming 67–75% less energy at roughly one-third the cost.</p>
+        <div class="pub-links">
+          <a class="pub-link" href="#">📃 Paper</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="pub">
+      <div class="pub-meta">
+        <span class="pub-venue">MMAR</span>
+        <span class="pub-year">2024</span>
+        <span class="pub-type">Full paper · 1st author</span>
+      </div>
+      <div class="pub-body">
+        <h3 class="pub-title"><a href="#">IoT Towers of Resilience: A Revolutionary Approach to Weathering Climate Extremes and Enhancing Sustainability in Vulnerable Ecosystems</a></h3>
+        <p class="pub-authors"><span class="me">A. F. H. Dhrubo</span>, S. Siddique, M. A. Qayum</p>
+        <p class="pub-summary">A priority-based sensor-fusion mechanism using flame, temperature, and humidity inputs to classify fire severity and trigger appropriate responses. The system includes <em>AtmoBalancer</em>, an urban-heat mitigation module via automated mist deployment, and a three-tower distributed network of solar-powered nodes connected to a Raspberry Pi Pico hub for real-time Firebase aggregation and predictive climate modeling.</p>
+        <div class="pub-links">
+          <a class="pub-link" href="#">📃 Paper</a>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="pub">
+      <div class="pub-meta">
+        <span class="pub-venue">ACL</span>
+        <span class="pub-year">2026</span>
+        <span class="pub-type">Under review · 1st author</span>
+      </div>
+      <div class="pub-body">
+        <h3 class="pub-title">LDCS: Legal Document Classification &amp; Summarization with Kolmogorov–Arnold Networks</h3>
+        <p class="pub-authors"><span class="me">A. F. H. Dhrubo</span>, et&nbsp;al.</p>
+        <p class="pub-summary">A deep-learning approach to legal document classification and summarization built to tackle domain-specific language, long-term dependencies, and class imbalance. A KAN block is added to the model to better process complex legal texts; extensive experiments on a Bangladesh legal dataset demonstrate substantial improvements over standard ML baselines (SVM, logistic regression).</p>
+      </div>
+    </article>
+
+
+    <h2 class="section-title" style="margin-top:96px; font-size:26px;"><span class="num">03b</span>Additional Publications</h2>
+    <div class="section-rule"></div>
+
+    <div class="compact-list">
+
+      <div class="compact-item">
+        <div class="compact-meta">Front. Med. <span class="yr">2026</span></div>
+        <div class="compact-body">
+          <p class="compact-title"><a href="https://doi.org/10.3389/fmed.2025.1664673">CerevianNet: Parameter Efficient Multi-Class Brain Tumor Classification Using Custom Lightweight CNN</a></p>
+          <p class="compact-authors">M. K. Jahan, A. A. Shafi, M. A. Rusho, M. S. Hussain, <span class="me">A. F. H. Dhrubo</span></p>
+        </div>
+      </div>
+
+      <div class="compact-item">
+        <div class="compact-meta">PLOS One <span class="yr">2026</span></div>
+        <div class="compact-body">
+          <p class="compact-title"><a href="https://doi.org/10.1371/journal.pone.0346977">PlantaNet and PlantaNet-Lite: Efficient and Explainable Multi-Crop Plant Disease Classification via Transformer Benchmarking and Custom Lightweight CNNs</a></p>
+          <p class="compact-authors">M. S. H. Zidan, A. Imran, M. K. Mia, M. Hussain, <span class="me">A. F. H. Dhrubo</span>, M. A. Qayum</p>
+        </div>
+      </div>
+
+      <div class="compact-item">
+        <div class="compact-meta">IEEE IPAS <span class="yr">2025</span></div>
+        <div class="compact-body">
+          <p class="compact-title"><a href="https://doi.org/10.1109/IPAS63548.2025.10924492">Optimizing Multimodal Transformers for Medical Image Captioning: Enhancing Automated Descriptions via AI Systems</a></p>
+          <p class="compact-authors">M. Arman, <span class="me">A. F. H. Dhrubo</span>, et&nbsp;al.</p>
+        </div>
+      </div>
+
+      <div class="compact-item">
+        <div class="compact-meta">ACM CSUR <span class="yr">UR</span></div>
+        <div class="compact-body">
+          <p class="compact-title">Scalable and Secure Blockchain-Based Storage Systems with AI Integration: A Survey of Architectures, Incentives, and Access Mechanisms <span class="compact-status">Under review</span></p>
+          <p class="compact-authors"><span class="me">A. F. H. Dhrubo</span>, et&nbsp;al.</p>
+        </div>
+      </div>
+
+      <div class="compact-item">
+        <div class="compact-meta">ACM TKDD <span class="yr">UR</span></div>
+        <div class="compact-body">
+          <p class="compact-title">Reproducible Benchmarking and Model Selection for Art-Style Recognition Across CNN–ViT–Hybrid Backbones <span class="compact-status">Under review</span></p>
+          <p class="compact-authors">S. Samin, <span class="me">A. F. H. Dhrubo</span>, et&nbsp;al.</p>
+        </div>
+      </div>
+
+      <div class="compact-item">
+        <div class="compact-meta">Frontiers Med. <span class="yr">UR</span></div>
+        <div class="compact-body">
+          <p class="compact-title">Multimodal Medical Image Fusion Combining Saliency Perception and Generative Adversarial Network <span class="compact-status">Under review</span></p>
+          <p class="compact-authors">Rifah et&nbsp;al. (incl. <span class="me">A. F. H. Dhrubo</span>)</p>
+        </div>
+      </div>
+
+      <div class="compact-item">
+        <div class="compact-meta">ACM Trans.<br>Healthcare <span class="yr">UR</span></div>
+        <div class="compact-body">
+          <p class="compact-title">RadMultiBench: A Multimodal Benchmark Revealing the Limits of Frozen Vision-Language Models in Radiology <span class="compact-status">Under review</span></p>
+          <p class="compact-authors">Nahin et&nbsp;al. (incl. <span class="me">A. F. H. Dhrubo</span>)</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="teaching">
+    <h2 class="section-title"><span class="num">04</span>Teaching &amp; Mentoring</h2>
+    <div class="section-rule"></div>
+    <p class="section-intro">Course Coordinator &amp; Lab Mentor in the Department of ECE, North South University, since March 2023.</p>
+
+    <div class="teaching-stats">
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Projects Mentored</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Capstone Students / Semester</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Directed Research Students</div>
+      </div>
+    </div>
+
+    <div class="teaching-text">
+      <p>I coordinate <strong>Senior Design I &amp; II</strong>, <strong>Directed Research</strong>, and <strong>Embedded Systems</strong> at NSU — guiding capstone projects across AI, IoT, and robotics, and supporting lab instructors transitioning the embedded curriculum from 8051-based platforms to ARM-based STM32.</p>
+      <p>Many students I have mentored have gone on to co-author IEEE and ACM conference papers. To support that transition, I authored an open educational resource on STM32 architecture, communication protocols, and IoT sensor integration, published on arXiv.</p>
+      <p>I also developed standardized experimentation and evaluation pipelines so research across student projects is reproducible — sharing model selection, hyperparameter tuning, and debugging practices for overfitting and convergence issues.</p>
+    </div>
+  </section>
+
+
+  <section id="awards">
+    <h2 class="section-title"><span class="num">05</span>Awards &amp; Recognition</h2>
+    <div class="section-rule"></div>
+
+    <ul class="award-list">
+      <li><span class="award-year">2025</span> <strong>Best Session Paper Award</strong> — Sixth IEEE International Conference on Image Processing Applications and Systems (IPAS), Lyon, France.</li>
+      <li><span class="award-year">2025</span> <strong>Finalist, AI Poster (Digital Display)</strong> — BEAR Summit and National Semiconductor Symposium Bangladesh.</li>
+      <li><span class="award-year">2024</span> <strong>First-author publication</strong> at MMAR 2024 for the <em>IoT Towers of Resilience</em> system.</li>
+      <li><span class="award-year">2024</span> <strong>First-author publication</strong> at ICESA 2024 for the eco-friendly cooler architecture.</li>
+    </ul>
+  </section>
+
+
+  <section id="service">
+    <h2 class="section-title"><span class="num">06</span>Academic Service</h2>
+    <div class="section-rule"></div>
+
+    <ul class="service-list">
+      <li><span class="service-tag">Reviewer</span> <strong>Journal of Visualized Experiments (JoVE)</strong> — peer review of submitted manuscripts.</li>
+      <li><span class="service-tag">Reviewer</span> <strong>IEEE Conference on Control Technology and Applications (CCTA)</strong>.</li>
+      <li><span class="service-tag">Coordinator</span> Senior Design I &amp; II — coordinating final-year capstone defense and review cycles since 2023.</li>
+      <li><span class="service-tag">Mentor</span> Lab-instructor mentorship for the ARM/STM32 curriculum transition at NSU ECE.</li>
+    </ul>
+  </section>
+
+
+  <section id="contact" style="padding-bottom: 16px;">
+    <h2 class="section-title"><span class="num">07</span>Get in Touch</h2>
+    <div class="section-rule"></div>
+
+    <div class="bio">
+      <p>
+        I am actively applying for <strong>PhD positions starting Fall 2026</strong>. I am most excited by groups working on efficient and explainable deep learning, edge AI for embodied systems, multimodal perception, and AI for low-resource and climate-vulnerable settings. If your group works on any of these, I would love to hear from you.
+      </p>
+      <p>
+        The best way to reach me is by email: <strong>ahmed.dhrubo&nbsp;[at]&nbsp;northsouth&nbsp;⋅&nbsp;edu</strong>. References available on request.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-block">
+      <h4>Affiliation</h4>
+      <p>NSU Intelligent Robotics Lab (NIROlab)</p>
+      <p>Dept. of Electrical &amp; Computer Engineering</p>
+      <p>North South University</p>
+      <p>Bashundhara R/A, Dhaka 1229, Bangladesh</p>
+    </div>
+    <div class="footer-block">
+      <h4>Elsewhere</h4>
+      <p><a href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></p>
+      <p><a href="#" target="_blank" rel="noopener">ResearchGate</a></p>
+      <p><a href="#" target="_blank" rel="noopener">LinkedIn</a></p>
+      <p><a href="#" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Ahmed Faizul Haque Dhrubo</span>
+    <a class="back-to-top" href="#top">↑ Back to top</a>
+  </div>
+</footer>
+
+</body>
+</html>
