@@ -17,18 +17,18 @@
 
 <style>
   :root {
-    --paper: #F7F2E9;
-    --paper-warm: #F1EADD;
-    --ink: #1C1814;
-    --ink-soft: #2E2822;
-    --muted: #6B5F50;
-    --muted-2: #8A7F70;
+    --paper: #FFFFFF;
+    --paper-warm: #FAFAFA;
+    --ink: #161616;
+    --ink-soft: #2A2A2A;
+    --muted: #666666;
+    --muted-2: #8C8C8C;
     --accent: #A8472B;
     --accent-bright: #C2542F;
-    --accent-soft: #E8D5C5;
-    --line: #DFD5C2;
-    --line-soft: #ECE3D2;
-    --tag-bg: rgba(28, 24, 20, 0.055);
+    --accent-soft: #F5E6DD;
+    --line: #E5E5E5;
+    --line-soft: #F0F0F0;
+    --tag-bg: rgba(0, 0, 0, 0.045);
     --tag-bg-hover: rgba(168, 71, 43, 0.10);
 
     --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
@@ -48,12 +48,9 @@
     background: var(--paper);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image:
-      radial-gradient(at 12% 8%, rgba(168, 71, 43, 0.04) 0px, transparent 50%),
-      radial-gradient(at 88% 92%, rgba(61, 92, 92, 0.035) 0px, transparent 55%);
   }
 
-  ::selection { background: var(--accent); color: var(--paper); }
+  ::selection { background: var(--accent); color: #FFFFFF; }
 
   a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: color 160ms, border-color 160ms; }
   a:hover { color: var(--accent); border-color: var(--accent); }
@@ -61,7 +58,7 @@
   /* ----- Top Bar ----- */
   .topbar {
     position: sticky; top: 0; z-index: 50;
-    background: rgba(247, 242, 233, 0.85);
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: saturate(140%) blur(10px);
     -webkit-backdrop-filter: saturate(140%) blur(10px);
     border-bottom: 1px solid var(--line-soft);
@@ -123,10 +120,46 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0.35; }
   }
+
+  /* Hero top: name+role on left, photo on right */
+  .hero-top {
+    display: grid;
+    grid-template-columns: 1fr 168px;
+    gap: 36px;
+    align-items: start;
+    margin-bottom: 28px;
+  }
+  .hero-photo-wrap {
+    position: relative;
+  }
+  .hero-photo {
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+    background: var(--paper-warm);
+    display: block;
+  }
+  .hero-photo-fallback {
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-soft) 0%, var(--paper-warm) 100%);
+    border: 1px solid var(--line);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 52px;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
   h1.name {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(40px, 6.2vw, 64px);
+    font-size: clamp(40px, 6vw, 60px);
     line-height: 1.02;
     letter-spacing: -0.025em;
     margin: 0 0 16px;
@@ -141,8 +174,8 @@
     font-size: 17px;
     color: var(--muted);
     max-width: 540px;
-    margin-bottom: 36px;
     line-height: 1.55;
+    margin: 0;
   }
   .hero-role strong { color: var(--ink); font-weight: 500; }
 
@@ -177,7 +210,7 @@
   }
   .quicklinks a:hover {
     background: var(--accent);
-    color: var(--paper);
+    color: #FFFFFF;
     transform: translateY(-1px);
   }
   .quicklinks .symbol { font-size: 14px; }
@@ -187,7 +220,16 @@
     font-size: 13.5px;
     color: var(--muted);
   }
-  .email-line strong { color: var(--ink); font-weight: 500; }
+  .email-line a {
+    color: var(--ink);
+    font-weight: 500;
+    border: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .email-line a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
   .pronouns {
     margin-top: 8px;
     font-size: 14px;
@@ -247,15 +289,6 @@
   }
   .news-list > div:nth-last-child(-n+2) .news-item,
   .news-list > div:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 4px; }
-  .view-all {
-    margin-top: 20px;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    border: none;
-  }
 
   /* ----- Publication cards ----- */
   .pub {
@@ -339,7 +372,7 @@
   }
   .pub-link:hover {
     background: var(--accent);
-    color: var(--paper);
+    color: #FFFFFF;
   }
 
   /* ----- Research cards ----- */
@@ -354,11 +387,12 @@
     border: 1px solid var(--line);
     border-radius: 8px;
     position: relative;
-    transition: border-color 200ms, transform 200ms;
+    transition: border-color 200ms, transform 200ms, box-shadow 200ms;
   }
   .research-card:hover {
     border-color: var(--accent);
     transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
   }
   .research-tag {
     font-family: var(--font-mono);
@@ -549,7 +583,7 @@
     letter-spacing: 0.08em;
     cursor: pointer;
   }
-  .back-to-top:hover { background: var(--accent); color: var(--paper); }
+  .back-to-top:hover { background: var(--accent); color: #FFFFFF; }
 
   /* ----- Reveal animation ----- */
   .reveal {
@@ -572,6 +606,14 @@
     main { padding: 0 22px; }
     section { padding: 64px 0 16px; }
     .hero { padding-top: 56px; }
+    .hero-top {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .hero-photo, .hero-photo-fallback {
+      width: 130px; height: 130px;
+      font-size: 42px;
+    }
     .news-list { grid-template-columns: 84px 1fr; gap: 10px 16px; }
     .pub { grid-template-columns: 1fr; gap: 14px; padding: 24px 0; }
     .pub-meta { flex-direction: row; gap: 14px; }
@@ -606,12 +648,25 @@
 
   <section class="hero" id="about">
     <div class="hero-eyebrow reveal reveal-1"><span class="pip"></span>Open to PhD positions · Fall 2026</div>
-    <h1 class="name reveal reveal-2">Ahmed Faizul<br>Haque <span class="ital">Dhrubo</span></h1>
-    <p class="hero-role reveal reveal-3">
-      Graduate Research Assistant at the <strong>NSU Intelligent Robotics Lab (NIROlab)</strong>, Department of Electrical &amp; Computer Engineering, North South University, Dhaka.
-    </p>
 
-    <div class="bio reveal reveal-4">
+    <div class="hero-top reveal reveal-2">
+      <div class="hero-text">
+        <h1 class="name">Ahmed Faizul<br>Haque <span class="ital">Dhrubo</span></h1>
+        <p class="hero-role">
+          Graduate Research Assistant at the <strong>NSU Intelligent Robotics Lab (NIROlab)</strong>, Department of Electrical &amp; Computer Engineering, North South University, Dhaka.
+        </p>
+      </div>
+      <div class="hero-photo-wrap">
+        <img class="hero-photo" id="profile-img"
+             src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=qt9Wg-YAAAAJ&citpid=3"
+             alt="Ahmed Faizul Haque Dhrubo"
+             referrerpolicy="no-referrer"
+             onerror="handleImgFallback(this)">
+        <div class="hero-photo-fallback" id="profile-fallback">AD</div>
+      </div>
+    </div>
+
+    <div class="bio reveal reveal-3">
       <p>
         <strong>I build efficient, explainable, and deployable AI systems</strong> that work under the real-world constraints of edge devices and climate-vulnerable environments. My research spans deep learning architectures for computer vision and NLP, multimodal sensor fusion for embedded systems, and IoT-enabled climate resilience.
       </p>
@@ -626,15 +681,17 @@
       </p>
     </div>
 
-    <div class="quicklinks">
-      <a href="#" target="_blank" rel="noopener"><span class="symbol">📑</span> Curriculum Vitae</a>
+    <div class="quicklinks reveal reveal-4">
+      <a href="./cv.pdf" target="_blank" rel="noopener"><span class="symbol">📑</span> Curriculum Vitae</a>
       <a href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener"><span class="symbol">🎓</span> Google Scholar</a>
-      <a href="#" target="_blank" rel="noopener"><span class="symbol">🔬</span> ResearchGate</a>
-      <a href="#" target="_blank" rel="noopener"><span class="symbol">💼</span> LinkedIn</a>
-      <a href="https://github.com/" target="_blank" rel="noopener"><span class="symbol">⌥</span> GitHub</a>
+      <a href="https://www.researchgate.net/profile/Ahmed-Dhrubo" target="_blank" rel="noopener"><span class="symbol">🔬</span> ResearchGate</a>
+      <a href="https://www.linkedin.com/in/ahmed-faizul-haque-dhrubo/" target="_blank" rel="noopener"><span class="symbol">💼</span> LinkedIn</a>
+      <a href="https://github.com/afhdhrubo" target="_blank" rel="noopener"><span class="symbol">⌥</span> GitHub</a>
     </div>
 
-    <div class="email-line"><strong>📧</strong>&nbsp;&nbsp;ahmed.dhrubo&nbsp;[at]&nbsp;northsouth&nbsp;⋅&nbsp;edu</div>
+    <div class="email-line">
+      <strong>📧</strong>&nbsp;&nbsp;<a href="mailto:ahmed.dhrubo@northsouth.edu">ahmed.dhrubo@northsouth.edu</a>
+    </div>
     <div class="pronouns">Based in Dhaka, Bangladesh · He/Him</div>
   </section>
 
@@ -711,12 +768,12 @@
         <span class="pub-type">Full paper · 1st author</span>
       </div>
       <div class="pub-body">
-        <h3 class="pub-title"><a href="#">HybiNet: Multi-Model Feature Fusion with Deep Explainability for Chest X-ray Diagnosis</a></h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener">HybiNet: Multi-Model Feature Fusion with Deep Explainability for Chest X-ray Diagnosis</a></h3>
         <p class="pub-authors"><span class="me">A. F. H. Dhrubo</span>, M. A. Rusho, M. K. Jahan, M. A. Qayum</p>
         <p class="pub-summary">A block-level fusion ensemble that injects intermediate features from EfficientNetB0, DenseNet121, and Xception into customized SqueezeNet Fire Modules. The result is heavyweight accuracy with far fewer parameters — 95.44% validation accuracy at 2.83M parameters, a 62.6% reduction versus DenseNet121, with strong interpretability. HybiNet v2 extends the design to object detection.</p>
         <div class="pub-links">
-          <a class="pub-link" href="#">📃 Paper</a>
-          <a class="pub-link" href="#">🛠️ Code</a>
+          <a class="pub-link" href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener">📃 Paper</a>
+          <a class="pub-link" href="https://github.com/afhdhrubo" target="_blank" rel="noopener">🛠️ Code</a>
         </div>
       </div>
     </article>
@@ -730,11 +787,11 @@
       </div>
       <div class="pub-body">
         <span class="pub-award">🏆 Best Session Paper Award</span>
-        <h3 class="pub-title"><a href="https://doi.org/10.1109/IPAS63548.2025.10924556">Multi-Model AI-Driven Satellite Image Segmentation for Comprehensive Urbanization and Environmental Degradation Analysis in Bangladesh</a></h3>
+        <h3 class="pub-title"><a href="https://doi.org/10.1109/IPAS63548.2025.10924556" target="_blank" rel="noopener">Multi-Model AI-Driven Satellite Image Segmentation for Comprehensive Urbanization and Environmental Degradation Analysis in Bangladesh</a></h3>
         <p class="pub-authors">M. Rezwan-ul-alam, <span class="me">A. F. H. Dhrubo</span>, et&nbsp;al.</p>
         <p class="pub-summary">A large-scale annotated dataset and temporal-analysis framework covering buildings, trees, water bodies, tin shades, and farmlands across a decade of satellite imagery — quantifying land-use transformation and environmental degradation in Bangladesh. I built the annotation workflow and the temporal analysis pipeline.</p>
         <div class="pub-links">
-          <a class="pub-link" href="https://doi.org/10.1109/IPAS63548.2025.10924556">📃 Paper</a>
+          <a class="pub-link" href="https://doi.org/10.1109/IPAS63548.2025.10924556" target="_blank" rel="noopener">📃 Paper</a>
         </div>
       </div>
     </article>
@@ -747,11 +804,11 @@
         <span class="pub-type">Full paper · 2nd author</span>
       </div>
       <div class="pub-body">
-        <h3 class="pub-title"><a href="https://doi.org/10.1109/ICAIIC64266.2025.10920787">Early Detection of Lung Cancer Using Pyramid Vision Transformer (PVTv2): A Comparative Analysis of Deep Learning Models</a></h3>
+        <h3 class="pub-title"><a href="https://doi.org/10.1109/ICAIIC64266.2025.10920787" target="_blank" rel="noopener">Early Detection of Lung Cancer Using Pyramid Vision Transformer (PVTv2): A Comparative Analysis of Deep Learning Models</a></h3>
         <p class="pub-authors">M. K. Jahan, <span class="me">A. F. H. Dhrubo</span>, M. A. Rusho, A. R. Chowdhury, F. Sharmin, M. A. Qayum</p>
         <p class="pub-summary">Systematic benchmarking of transformer-based vision architectures with ablation studies, identifying PVTv2 as the strongest performer for lung-cancer detection. Building on the satellite work, this paper grew out of broader work on which Vision Transformer variants generalize best in resource-constrained medical imaging.</p>
         <div class="pub-links">
-          <a class="pub-link" href="https://doi.org/10.1109/ICAIIC64266.2025.10920787">📃 Paper</a>
+          <a class="pub-link" href="https://doi.org/10.1109/ICAIIC64266.2025.10920787" target="_blank" rel="noopener">📃 Paper</a>
         </div>
       </div>
     </article>
@@ -764,11 +821,11 @@
         <span class="pub-type">Full paper · 1st author</span>
       </div>
       <div class="pub-body">
-        <h3 class="pub-title"><a href="#">Harnessing Technology for Climate Resilience: A New Paradigm in Urban Cooling through Eco-friendly Cooler</a></h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener">Harnessing Technology for Climate Resilience: A New Paradigm in Urban Cooling through Eco-friendly Cooler</a></h3>
         <p class="pub-authors"><span class="me">A. F. H. Dhrubo</span>, M. A. Qayum, et&nbsp;al.</p>
         <p class="pub-summary">A sustainable alternative to conventional air conditioning for Bangladesh's urban-heat crisis. I contributed an AI-driven control algorithm based on ASHRAE 55 (PMV/PPD) comfort modeling and helped design a hybrid architecture combining MOF-based desiccant dehumidification with evaporative cooling. The prototype produces cooling comparable to a 1-ton AC while consuming 67–75% less energy at roughly one-third the cost.</p>
         <div class="pub-links">
-          <a class="pub-link" href="#">📃 Paper</a>
+          <a class="pub-link" href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener">📃 Paper</a>
         </div>
       </div>
     </article>
@@ -781,11 +838,11 @@
         <span class="pub-type">Full paper · 1st author</span>
       </div>
       <div class="pub-body">
-        <h3 class="pub-title"><a href="#">IoT Towers of Resilience: A Revolutionary Approach to Weathering Climate Extremes and Enhancing Sustainability in Vulnerable Ecosystems</a></h3>
+        <h3 class="pub-title"><a href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener">IoT Towers of Resilience: A Revolutionary Approach to Weathering Climate Extremes and Enhancing Sustainability in Vulnerable Ecosystems</a></h3>
         <p class="pub-authors"><span class="me">A. F. H. Dhrubo</span>, S. Siddique, M. A. Qayum</p>
         <p class="pub-summary">A priority-based sensor-fusion mechanism using flame, temperature, and humidity inputs to classify fire severity and trigger appropriate responses. The system includes <em>AtmoBalancer</em>, an urban-heat mitigation module via automated mist deployment, and a three-tower distributed network of solar-powered nodes connected to a Raspberry Pi Pico hub for real-time Firebase aggregation and predictive climate modeling.</p>
         <div class="pub-links">
-          <a class="pub-link" href="#">📃 Paper</a>
+          <a class="pub-link" href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener">📃 Paper</a>
         </div>
       </div>
     </article>
@@ -813,7 +870,7 @@
       <div class="compact-item">
         <div class="compact-meta">Front. Med. <span class="yr">2026</span></div>
         <div class="compact-body">
-          <p class="compact-title"><a href="https://doi.org/10.3389/fmed.2025.1664673">CerevianNet: Parameter Efficient Multi-Class Brain Tumor Classification Using Custom Lightweight CNN</a></p>
+          <p class="compact-title"><a href="https://doi.org/10.3389/fmed.2025.1664673" target="_blank" rel="noopener">CerevianNet: Parameter Efficient Multi-Class Brain Tumor Classification Using Custom Lightweight CNN</a></p>
           <p class="compact-authors">M. K. Jahan, A. A. Shafi, M. A. Rusho, M. S. Hussain, <span class="me">A. F. H. Dhrubo</span></p>
         </div>
       </div>
@@ -821,7 +878,7 @@
       <div class="compact-item">
         <div class="compact-meta">PLOS One <span class="yr">2026</span></div>
         <div class="compact-body">
-          <p class="compact-title"><a href="https://doi.org/10.1371/journal.pone.0346977">PlantaNet and PlantaNet-Lite: Efficient and Explainable Multi-Crop Plant Disease Classification via Transformer Benchmarking and Custom Lightweight CNNs</a></p>
+          <p class="compact-title"><a href="https://doi.org/10.1371/journal.pone.0346977" target="_blank" rel="noopener">PlantaNet and PlantaNet-Lite: Efficient and Explainable Multi-Crop Plant Disease Classification via Transformer Benchmarking and Custom Lightweight CNNs</a></p>
           <p class="compact-authors">M. S. H. Zidan, A. Imran, M. K. Mia, M. Hussain, <span class="me">A. F. H. Dhrubo</span>, M. A. Qayum</p>
         </div>
       </div>
@@ -829,7 +886,7 @@
       <div class="compact-item">
         <div class="compact-meta">IEEE IPAS <span class="yr">2025</span></div>
         <div class="compact-body">
-          <p class="compact-title"><a href="https://doi.org/10.1109/IPAS63548.2025.10924492">Optimizing Multimodal Transformers for Medical Image Captioning: Enhancing Automated Descriptions via AI Systems</a></p>
+          <p class="compact-title"><a href="https://doi.org/10.1109/IPAS63548.2025.10924492" target="_blank" rel="noopener">Optimizing Multimodal Transformers for Medical Image Captioning: Enhancing Automated Descriptions via AI Systems</a></p>
           <p class="compact-authors">M. Arman, <span class="me">A. F. H. Dhrubo</span>, et&nbsp;al.</p>
         </div>
       </div>
@@ -933,7 +990,7 @@
         I am actively applying for <strong>PhD positions starting Fall 2026</strong>. I am most excited by groups working on efficient and explainable deep learning, edge AI for embodied systems, multimodal perception, and AI for low-resource and climate-vulnerable settings. If your group works on any of these, I would love to hear from you.
       </p>
       <p>
-        The best way to reach me is by email: <strong>ahmed.dhrubo&nbsp;[at]&nbsp;northsouth&nbsp;⋅&nbsp;edu</strong>. References available on request.
+        The best way to reach me is by email: <a href="mailto:ahmed.dhrubo@northsouth.edu"><strong>ahmed.dhrubo@northsouth.edu</strong></a>. References available on request.
       </p>
     </div>
   </section>
@@ -953,9 +1010,10 @@
     <div class="footer-block">
       <h4>Elsewhere</h4>
       <p><a href="https://scholar.google.com/citations?user=qt9Wg-YAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></p>
-      <p><a href="#" target="_blank" rel="noopener">ResearchGate</a></p>
-      <p><a href="#" target="_blank" rel="noopener">LinkedIn</a></p>
-      <p><a href="#" target="_blank" rel="noopener">GitHub</a></p>
+      <p><a href="https://www.researchgate.net/profile/Ahmed-Dhrubo" target="_blank" rel="noopener">ResearchGate</a></p>
+      <p><a href="https://www.linkedin.com/in/ahmed-faizul-haque-dhrubo/" target="_blank" rel="noopener">LinkedIn</a></p>
+      <p><a href="https://github.com/afhdhrubo" target="_blank" rel="noopener">GitHub</a></p>
+      <p><a href="mailto:ahmed.dhrubo@northsouth.edu">Email</a></p>
     </div>
   </div>
 
@@ -964,6 +1022,33 @@
     <a class="back-to-top" href="#top">↑ Back to top</a>
   </div>
 </footer>
+
+<script>
+  // Profile image fallback chain:
+  //   1) Try Google Scholar photo (citpid=3, then 2, then 1)
+  //   2) Try local profile.jpg from the repo
+  //   3) Show "AD" initials placeholder
+  (function() {
+    var img = document.getElementById('profile-img');
+    var fallback = document.getElementById('profile-fallback');
+    var attempts = [
+      'https://scholar.googleusercontent.com/citations?view_op=view_photo&user=qt9Wg-YAAAAJ&citpid=3',
+      'https://scholar.googleusercontent.com/citations?view_op=view_photo&user=qt9Wg-YAAAAJ&citpid=2',
+      'https://scholar.googleusercontent.com/citations?view_op=view_photo&user=qt9Wg-YAAAAJ&citpid=1',
+      './profile.jpg'
+    ];
+    var idx = 0;
+    window.handleImgFallback = function(el) {
+      idx++;
+      if (idx < attempts.length) {
+        el.src = attempts[idx];
+      } else {
+        el.style.display = 'none';
+        fallback.style.display = 'flex';
+      }
+    };
+  })();
+</script>
 
 </body>
 </html>
